@@ -12,6 +12,6 @@ fourth frament - drawing up a nutrition plan, displaying calories and nutrients 
 <br/>
 resourses:<br/>
 
-Picasso, SQlite, Room, DAO?, androidx, Retrofit, Room Persistence Library, ExoPlayer?, Picasso or Glide, Android Jetpack, Lottie<br/>
+Picasso, SQlite, Room, DAO?, androidx, Retrofit, Room Persistence Library, ExoPlayer?, Picasso or Glide, Android Jetpack, Lottie<br/> Kotlin Coroutines, Dagger?, Material Components?, Mockito?</br>
 
 api: https://rapidapi.com/apidojo/api/tasty
