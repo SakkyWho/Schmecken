@@ -1,12 +1,19 @@
 package com.example.domain
 
+import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+
+import androidx.room.Database
+import androidx.room.RoomDatabase
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
+import com.example.data.*
+
 import org.junit.Assert.*
+import androidx.room.Room.databaseBuilder
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,5 +27,9 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.domain.test", appContext.packageName)
+
+
     }
 }
+
+

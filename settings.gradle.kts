@@ -17,3 +17,4 @@ rootProject.name = "Schmecken"
 include(":presentation")
 include(":domain")
 include(":data")
+include(":domain")

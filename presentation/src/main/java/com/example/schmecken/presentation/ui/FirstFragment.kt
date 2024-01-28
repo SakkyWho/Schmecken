@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.schmecken.R
+import com.example.data.DatabaseProvider
+import com.example.data.Dish
+
 
 /**
  * A simple [Fragment] subclass.
@@ -27,6 +30,10 @@ class FirstFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+            // Обращение к бд TODO адатировать потом методы, когда апи подключу
+        val db = DatabaseProvider.getInstance(requireContext()).database
+        val dishDao = db.dishDao()
+        val dishes: List<Dish> = dishDao.getAll()
     }
 
     override fun onCreateView(
