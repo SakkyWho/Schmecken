@@ -20,7 +20,7 @@ data class Dish(
     @ColumnInfo(name = "healthLabels") val healthLabels: Array<String>?,
     @ColumnInfo(name = "cautions") val cautions: Array<String>?,
     @ColumnInfo(name = "ingredientLines") val ingredientLines: Array<String>?,
-    @ColumnInfo(name = "ingredient") val ingredient: Array<Array<String>>?,
+    @ColumnInfo(name = "ingredients") val ingredients: Array<Array<String>>?,
     @ColumnInfo(name = "calories") val calories: Double?,
     @ColumnInfo(name = "totalWeight") val totalWeight: Double?,
     @ColumnInfo(name = "totalTime") val totalTime: Int?,
@@ -29,8 +29,7 @@ data class Dish(
     @ColumnInfo(name = "dishType") val dishType: Array<String>?,
     @ColumnInfo(name = "totalNutrients") val totalNutrients: Array<Array<Triple<String, Double, String>>>?,
     @ColumnInfo(name = "totalDaily") val totalDaily: Array<Array<Triple<String, Double, String>>>?,
-    @ColumnInfo(name = "digest") val digest: Array<Array<String>>?
+    @ColumnInfo(name = "digest") val digest: Array<Array<String>>?,
+    @ColumnInfo(name = "_links ") val _links: Array<Array<String>>?
     ) {
-
-
 }
