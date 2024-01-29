@@ -1,12 +1,16 @@
 package com.example.data
 
 import androidx.room.Dao
+import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
 interface DishDao {
     @Query("SELECT * FROM dish")
     fun getAll(): List<Dish>
+
+    @Insert
+    fun insertAll(vararg dishes: Dish)
 
    /* @Query("SELECT * FROM dish WHERE Uri IN (:tablename)")
     fun loadAllByIds(userIds: IntArray): List<User>
