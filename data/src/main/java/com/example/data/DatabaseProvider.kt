@@ -6,7 +6,7 @@ import androidx.room.Room
 class DatabaseProvider private constructor(context: Context) {
     val database: AppDatabase = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "database"
+        AppDatabase::class.java, "dishes"
     ).build()
 
     companion object {
