@@ -8,16 +8,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.example.schmecken.R
-import com.example.domain.Requestmaker
-import com.example.data.RecipeRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+
 
 
 class SecondFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var recipeRepository: RecipeRepository
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

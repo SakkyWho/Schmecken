@@ -1,9 +1,17 @@
+import org.jetbrains.kotlin.konan.properties.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-  //  id("com.google.devtools.ksp")
+}
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.reader())
 }
 
+val XKey: String? = localProperties.getProperty("X-RapidAPI-Key")
+val XHost: String? = localProperties.getProperty("X-RapidAPI-Host")
 android {
     namespace = "com.example.schmecken"
     compileSdk = 34
@@ -16,6 +24,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -52,9 +61,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.room:room-runtime:2.6.1")
-    androidTestImplementation(project(mapOf("path" to ":data")))
-   // ksp("androidx.room:room-compiler:2.6.1")
-    implementation(project(":data"))
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
