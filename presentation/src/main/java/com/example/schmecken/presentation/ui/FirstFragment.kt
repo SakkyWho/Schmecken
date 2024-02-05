@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.schmecken.R
-import com.example.data.DatabaseProvider
-import com.example.data.Dish
 
 
 class FirstFragment : Fragment() {

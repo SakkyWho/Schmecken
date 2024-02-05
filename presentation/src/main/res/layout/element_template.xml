@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:background="@color/midnight_green"
+    android:layout_marginBottom="20dp">
+
+    <ImageView
+        android:id="@+id/item_list_image"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/countryname"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/comfortaa"
+        android:gravity="center"
+        android:text="@string/dishname"
+        android:textSize="24dp"
+        android:textColor="@color/white"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        />
+</FrameLayout>
