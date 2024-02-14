@@ -5,70 +5,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class ApiResponse(
-    val hits: List<Hit>
-)
-
-data class Hit(
-    val recipe: Dish
-)
 @Entity(tableName = "dishes")
 data class Dish(
-    @PrimaryKey val id : Int,
+    @PrimaryKey(autoGenerate = true) val id : Int = 0,
     @ColumnInfo(name = "basicinfo") val basicinfo :BasicInfo,
     @ColumnInfo(name = "otherinfo") val otherinfo: OtherInfo,
     @ColumnInfo(name = "nutrition") val nutrition: Nutrition
     )
-
-data class OtherInfo(
-    @SerializedName("source")
-    val source: String?,
-    @SerializedName("url")
-    val url: String?,
-    @SerializedName("shareAs")
-    val shareas: String?,
-    @SerializedName("yield")
-    val yield: Int?,
-    @SerializedName("ingredientLines")
-    val ingredientLines: List<String>?,
-    @SerializedName("ingredients")
-    val ingredients: List<ingredient>?,
-    @SerializedName("totalTime")
-    val totalTime: Int?,
-    @SerializedName("digest")
-    val digest: List<digest>?,
-    )
-
-data class sub(
-    val label : String?,
-    val tag: String?,
-    val schemaOrgTag: String?,
-    val total: Double?,
-    val hasRDI: Boolean?,
-    val daily: Double?,
-    val unit: String?
-)
-
-
-data class digest(
-    val label : String?,
-    val tag: String?,
-    val schemaOrgTag: String?,
-    val total: Double?,
-    val hasRDI: Boolean?,
-    val daily: Double?,
-    val unit: String?,
-    val sub: List<sub>?
-)
-
-data class ingredient(
-    val text: String?,
-    val weight: Int?,
-    val foodCategory: String?,
-    val foodId: String?,
-    val image: String?
-)
-
 data class BasicInfo(
     @SerializedName("uri")
     val uri: String?,
@@ -77,7 +20,7 @@ data class BasicInfo(
     @SerializedName("image")
     val image: String?,
     @SerializedName("images")
-    val images: Map<String,image>?,
+    val images: Map<String,dishImage>?,
     @SerializedName("dietLabels")
     val dietLabels: List<String>?,
     @SerializedName("healthlabels")
@@ -93,8 +36,57 @@ data class BasicInfo(
     @SerializedName("dishType")
     val dishType: List<String>?,
 )
+data class OtherInfo(
+    @SerializedName("source")
+    val source: String?,
+    @SerializedName("url")
+    val url: String?,
+    @SerializedName("shareAs")
+    val shareas: String?,
+    @SerializedName("yield")
+    val yield: Int?,
+    @SerializedName("ingredientLines")
+    val ingredientLines: List<String>?,
+    @SerializedName("ingredients")
+    val ingredients: List<dishIngredient>?,
+    @SerializedName("totalTime")
+    val totalTime: Int?,
+    @SerializedName("digest")
+    val digest: List<dishDigest>?,
+    )
 
-data class image(
+data class dishSub(
+    val daily: Double?,
+    val hasRDI: Boolean?,
+    val label: String?,
+    val schemaOrgTag: String?,
+    val tag: String?,
+    val total: Double?,
+    val unit: String?
+)
+
+
+data class dishDigest(
+    val label : String?,
+    val tag: String?,
+    val schemaOrgTag: String?,
+    val total: Double?,
+    val hasRDI: Boolean?,
+    val daily: Double?,
+    val unit: String?,
+    val sub: List<dishSub>?
+)
+
+data class dishIngredient(
+    val foodCategory: String,
+    val foodId: String,
+    val image: String,
+    val text: String,
+    val weight: Double
+)
+
+
+data class dishImage(
     val url: String,
     val width: Int,
     val height: Int

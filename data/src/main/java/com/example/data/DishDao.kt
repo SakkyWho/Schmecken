@@ -14,6 +14,13 @@ interface DishDao {
     @Insert
     fun insertAllarr(dishes: List<Dish>)
 
+    @Query("SELECT basicinfo FROM dishes WHERE id = :dishId")
+    fun getBasicInfo(dishId: Int): BasicInfo
+    @Query("SELECT otherinfo FROM dishes WHERE id = :dishId")
+    fun getOtherInfo(dishId: Int): OtherInfo
+    @Query("SELECT nutrition FROM dishes WHERE id = :dishId")
+    fun getNutrition(dishId: Int): Nutrition
+
     /* @Query("SELECT * FROM dish WHERE Uri IN (:tablename)")
      fun loadAllByIds(userIds: IntArray): List<User>
 

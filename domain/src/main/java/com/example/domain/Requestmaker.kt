@@ -1,7 +1,7 @@
 package com.example.domain
 
 import com.example.data.RecipeApi
-import com.example.schmecken.presentation.viewmodel.MainActivity
+import com.example.data.filters.FiltersDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -9,11 +9,12 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-class Requestmaker {
-val urlBuilder = urlBuilder(MainActivity.context)
+class Requestmaker(filtersDao: FiltersDao) {
+private val urlBuilder = UrlBuilder(filtersDao)
     internal suspend fun getJson(): String {
         urlBuilder
         val url = urlBuilder.build()
+        try {
         return suspendCoroutine { continuation ->
             GlobalScope.launch(Dispatchers.Main) {
                 try {
@@ -25,6 +26,8 @@ val urlBuilder = urlBuilder(MainActivity.context)
                 }
             }
         }
+        }catch (e:Exception){
+           return "help"
+        }
     }
-
 }

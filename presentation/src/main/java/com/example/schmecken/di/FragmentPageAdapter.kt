@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.data.DishDao
+import com.example.data.filters.FiltersDao
 import com.example.schmecken.presentation.ui.FirstFragment
 import com.example.schmecken.presentation.ui.FourthFragment
 import com.example.schmecken.presentation.ui.SecondFragment

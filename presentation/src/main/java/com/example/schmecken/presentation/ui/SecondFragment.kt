@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
+import com.example.domain.SharedViewModel
 import com.example.schmecken.R
 
 
@@ -20,16 +22,12 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_second, container, false)
-        val myButton: Button = view.findViewById(R.id.button)
-        val mytext: TextView = view.findViewById(R.id.textView2)
-
-        myButton.setOnClickListener {
-            }
 
         return view
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val viewModel: SharedViewModel by activityViewModels()
 
     }
     companion object {
