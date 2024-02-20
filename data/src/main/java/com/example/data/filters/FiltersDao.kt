@@ -3,7 +3,6 @@ package com.example.data.filters
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.data.Dish
 @Dao
 interface FiltersDao {
     @Query(value = "SELECT * FROM filters")

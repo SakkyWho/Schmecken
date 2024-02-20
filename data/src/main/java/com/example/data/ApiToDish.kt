@@ -41,75 +41,79 @@ fun recipeToDish(recipe: Recipe): Dish {
 
 
 }
-fun totalDailyToMap(totalDaily: TotalDaily): Map<String, Nutrient> {
+fun totalDailyToMap(totalDaily: TotalDaily?): Map<String, Nutrient?> {
     return mapOf(
-        "CA" to createNutrient(totalDaily.CA.label, totalDaily.CA.quantity,totalDaily.CA.unit),
-        "CHOCDF" to createNutrient(totalDaily.CHOCDF.label, totalDaily.CHOCDF.quantity,totalDaily.CHOCDF.unit),
-        "CHOLE" to createNutrient(totalDaily.CHOLE.label, totalDaily.CHOLE.quantity,totalDaily.CHOLE.unit),
-        "ENERC_KCAL" to createNutrient(totalDaily.ENERC_KCAL.label, totalDaily.ENERC_KCAL.quantity,totalDaily.ENERC_KCAL.unit),
-        "FASAT" to createNutrient(totalDaily.FASAT.label, totalDaily.FASAT.quantity,totalDaily.FASAT.unit),
-        "FAT" to createNutrient(totalDaily.FAT.label, totalDaily.FAT.quantity,totalDaily.FAT.unit),
-        "FE" to createNutrient(totalDaily.FE.label, totalDaily.FE.quantity,totalDaily.FE.unit),
-        "FIBTG" to createNutrient(totalDaily.FIBTG.label, totalDaily.FIBTG.quantity,totalDaily.FIBTG.unit),
-        "FOLDFE" to createNutrient(totalDaily.FOLDFE.label, totalDaily.FOLDFE.quantity,totalDaily.FOLDFE.unit),
-        "K" to createNutrient(totalDaily.K.label, totalDaily.K.quantity,totalDaily.K.unit),
-        "MG" to createNutrient(totalDaily.MG.label, totalDaily.MG.quantity,totalDaily.MG.unit),
-        "NA" to createNutrient(totalDaily.NA.label, totalDaily.NA.quantity,totalDaily.NA.unit),
-        "NIA" to createNutrient(totalDaily.NIA.label, totalDaily.NIA.quantity,totalDaily.NIA.unit),
-        "P" to createNutrient(totalDaily.P.label, totalDaily.P.quantity,totalDaily.P.unit),
-        "PROCNT" to createNutrient(totalDaily.PROCNT.label, totalDaily.PROCNT.quantity,totalDaily.PROCNT.unit),
-        "RIBF" to createNutrient(totalDaily.RIBF.label, totalDaily.RIBF.quantity,totalDaily.RIBF.unit),
-        "THIA" to createNutrient(totalDaily.THIA.label, totalDaily.THIA.quantity,totalDaily.THIA.unit),
-        "TOCPHA" to createNutrient(totalDaily.TOCPHA.label, totalDaily.TOCPHA.quantity,totalDaily.TOCPHA.unit),
-        "VITA_RAE" to createNutrient(totalDaily.VITA_RAE.label, totalDaily.VITA_RAE.quantity,totalDaily.VITA_RAE.unit),
-        "VITB12" to createNutrient(totalDaily.VITB12.label, totalDaily.VITB12.quantity,totalDaily.VITB12.unit),
-        "VITB6A" to createNutrient(totalDaily.VITB6A.label, totalDaily.VITB6A.quantity,totalDaily.VITB6A.unit),
-        "VITC" to createNutrient(totalDaily.VITC.label, totalDaily.VITC.quantity,totalDaily.VITC.unit),
-        "VITD" to createNutrient(totalDaily.VITD.label, totalDaily.VITD.quantity,totalDaily.VITD.unit),
-        "VITK1" to createNutrient(totalDaily.VITK1.label, totalDaily.VITK1.quantity,totalDaily.VITK1.unit),
-        "ZN" to createNutrient(totalDaily.ZN.label, totalDaily.ZN.quantity,totalDaily.ZN.unit)
-    )
-}
-fun totalNutrientsToMap(totalNutrients: TotalNutrients): Map<String, Nutrient> {
-    return mapOf(
-        "CA" to createNutrient(totalNutrients.CA.label, totalNutrients.CA.quantity,totalNutrients.CA.unit),
-        "CHOCDF" to createNutrient(totalNutrients.CHOCDF.label, totalNutrients.CHOCDF.quantity,totalNutrients.CHOCDF.unit),
-        "CHOCDF.net" to createNutrient(totalNutrients.CHOCDFnet.label, totalNutrients.CHOCDFnet.quantity,totalNutrients.CHOCDFnet.unit),
-        "CHOLE" to createNutrient(totalNutrients.CHOLE.label, totalNutrients.CHOLE.quantity,totalNutrients.CHOLE.unit),
-        "ENERC_KCAL" to createNutrient(totalNutrients.ENERC_KCAL.label, totalNutrients.ENERC_KCAL.quantity,totalNutrients.ENERC_KCAL.unit),
-        "FAMS" to createNutrient(totalNutrients.FAMS.label, totalNutrients.FAMS.quantity,totalNutrients.FAMS.unit),
-        "FAPU" to createNutrient(totalNutrients.FAPU.label, totalNutrients.FAPU.quantity,totalNutrients.FAPU.unit),
-        "FASAT" to createNutrient(totalNutrients.FASAT.label, totalNutrients.FASAT.quantity,totalNutrients.FASAT.unit),
-        "FAT" to createNutrient(totalNutrients.FAT.label, totalNutrients.FAT.quantity,totalNutrients.FAT.unit),
-        "FATRN" to createNutrient(totalNutrients.FATRN.label, totalNutrients.FATRN.quantity,totalNutrients.FATRN.unit),
-        "FE" to createNutrient(totalNutrients.FE.label, totalNutrients.FE.quantity,totalNutrients.FE.unit),
-        "FIBTG" to createNutrient(totalNutrients.FIBTG.label, totalNutrients.FIBTG.quantity,totalNutrients.FIBTG.unit),
-        "FOLAC" to createNutrient(totalNutrients.FOLAC.label, totalNutrients.FOLAC.quantity,totalNutrients.FOLAC.unit),
-        "FOLDFE" to createNutrient(totalNutrients.FOLDFE.label, totalNutrients.FOLDFE.quantity,totalNutrients.FOLDFE.unit),
-        "FOLFD" to createNutrient(totalNutrients.FOLFD.label, totalNutrients.FOLFD.quantity,totalNutrients.FOLFD.unit),
-        "K" to createNutrient(totalNutrients.K.label, totalNutrients.K.quantity,totalNutrients.K.unit),
-        "MG" to createNutrient(totalNutrients.MG.label, totalNutrients.MG.quantity,totalNutrients.MG.unit),
-        "NA" to createNutrient(totalNutrients.NA.label, totalNutrients.NA.quantity,totalNutrients.NA.unit),
-        "NIA" to createNutrient(totalNutrients.NIA.label, totalNutrients.NIA.quantity,totalNutrients.NIA.unit),
-        "P" to createNutrient(totalNutrients.P.label, totalNutrients.P.quantity,totalNutrients.P.unit),
-        "PROCNT" to createNutrient(totalNutrients.PROCNT.label, totalNutrients.PROCNT.quantity,totalNutrients.PROCNT.unit),
-        "RIBF" to createNutrient(totalNutrients.RIBF.label, totalNutrients.RIBF.quantity,totalNutrients.RIBF.unit),
-        "SUGAR" to createNutrient(totalNutrients.SUGAR.label, totalNutrients.SUGAR.quantity,totalNutrients.SUGAR.unit),
-        "SUGAR.added" to createNutrient(totalNutrients.SUGARadded.label, totalNutrients.SUGARadded.quantity,totalNutrients.SUGARadded.unit),
-        "THIA" to createNutrient(totalNutrients.THIA.label, totalNutrients.THIA.quantity,totalNutrients.THIA.unit),
-        "TOCPHA" to createNutrient(totalNutrients.TOCPHA.label, totalNutrients.TOCPHA.quantity,totalNutrients.TOCPHA.unit),
-        "VITA_RAE" to createNutrient(totalNutrients.VITA_RAE.label, totalNutrients.VITA_RAE.quantity,totalNutrients.VITA_RAE.unit),
-        "VITB12" to createNutrient(totalNutrients.VITB12.label, totalNutrients.VITB12.quantity,totalNutrients.VITB12.unit),
-        "VITB6A" to createNutrient(totalNutrients.VITB6A.label, totalNutrients.VITB6A.quantity,totalNutrients.VITB6A.unit),
-        "VITC" to createNutrient(totalNutrients.VITC.label, totalNutrients.VITC.quantity,totalNutrients.VITC.unit),
-        "VITD" to createNutrient(totalNutrients.VITD.label, totalNutrients.VITD.quantity,totalNutrients.VITD.unit),
-        "VITK1" to createNutrient(totalNutrients.VITK1.label, totalNutrients.VITK1.quantity,totalNutrients.VITK1.unit),
-        "WATER" to createNutrient(totalNutrients.WATER.label, totalNutrients.WATER.quantity,totalNutrients.WATER.unit),
-        "ZN" to createNutrient(totalNutrients.ZN.label, totalNutrients.ZN.quantity,totalNutrients.ZN.unit)
+        "CA" to (totalDaily?.CA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "CHOCDF" to (totalDaily?.CHOCDF?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "CHOLE" to (totalDaily?.CHOLE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "ENERC_KCAL" to (totalDaily?.ENERC_KCAL?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FASAT" to (totalDaily?.FASAT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FAT" to (totalDaily?.FAT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FE" to (totalDaily?.FE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FIBTG" to (totalDaily?.FIBTG?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FOLDFE" to (totalDaily?.FOLDFE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "K" to (totalDaily?.K?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "MG" to (totalDaily?.MG?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "NA" to (totalDaily?.NA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "NIA" to (totalDaily?.NIA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "P" to (totalDaily?.P?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "PROCNT" to (totalDaily?.PROCNT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "RIBF" to (totalDaily?.RIBF?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "THIA" to (totalDaily?.THIA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "TOCPHA" to (totalDaily?.TOCPHA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITA_RAE" to (totalDaily?.VITA_RAE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITB12" to (totalDaily?.VITB12?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITB6A" to (totalDaily?.VITB6A?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITC" to (totalDaily?.VITC?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITD" to (totalDaily?.VITD?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITK1" to (totalDaily?.VITK1?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "ZN" to (totalDaily?.ZN?.let { createNutrient(it.label, it.quantity, it.unit) })
     )
 }
 
-fun createNutrient(name: String, quantity: Double, unit: String): Nutrient {
+fun totalNutrientsToMap(totalNutrients: TotalNutrients?): Map<String, Nutrient?> {
+    return mapOf(
+        "CA" to (totalNutrients?.CA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "CHOCDF" to (totalNutrients?.CHOCDF?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "CHOCDF.net" to (totalNutrients?.CHOCDFnet?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "CHOLE" to (totalNutrients?.CHOLE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "ENERC_KCAL" to (totalNutrients?.ENERC_KCAL?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FAMS" to (totalNutrients?.FAMS?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FAPU" to (totalNutrients?.FAPU?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FASAT" to (totalNutrients?.FASAT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FAT" to (totalNutrients?.FAT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FATRN" to (totalNutrients?.FATRN?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FE" to (totalNutrients?.FE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FIBTG" to (totalNutrients?.FIBTG?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FOLAC" to (totalNutrients?.FOLAC?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FOLDFE" to (totalNutrients?.FOLDFE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "FOLFD" to (totalNutrients?.FOLFD?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "K" to (totalNutrients?.K?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "MG" to (totalNutrients?.MG?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "NA" to (totalNutrients?.NA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "NIA" to (totalNutrients?.NIA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "P" to (totalNutrients?.P?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "PROCNT" to (totalNutrients?.PROCNT?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "RIBF" to (totalNutrients?.RIBF?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "SUGAR" to (totalNutrients?.SUGAR?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "SUGAR.added" to (totalNutrients?.SUGARadded?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "THIA" to (totalNutrients?.THIA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "TOCPHA" to (totalNutrients?.TOCPHA?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITA_RAE" to (totalNutrients?.VITA_RAE?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITB12" to (totalNutrients?.VITB12?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITB6A" to (totalNutrients?.VITB6A?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITC" to (totalNutrients?.VITC?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITD" to (totalNutrients?.VITD?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "VITK1" to (totalNutrients?.VITK1?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "WATER" to (totalNutrients?.WATER?.let { createNutrient(it.label, it.quantity, it.unit) }),
+        "ZN" to (totalNutrients?.ZN?.let { createNutrient(it.label, it.quantity, it.unit) }),
+    )
+}
+
+fun createNutrient(name: String?, quantity: Double?, unit: String?): Nutrient? {
+    if (name == null || quantity == null || unit == null) {
+        return null
+    }
     return Nutrient(
         name = name,
         quantity = quantity,
@@ -117,42 +121,55 @@ fun createNutrient(name: String, quantity: Double, unit: String): Nutrient {
     )
 }
 
-fun convertToDishIngredients(recipeIngredients: List<Ingredient>): List<dishIngredient> {
-    return recipeIngredients.map { Ingredient ->
-        dishIngredient(
-            foodCategory = Ingredient.foodCategory,
-            foodId = Ingredient.foodId,
-            image = Ingredient.image,
-            text = Ingredient.text,
-            weight = Ingredient.weight
+
+fun convertToDishIngredients(recipeIngredients: List<Ingredient?>): List<dishIngredient?> {
+    return recipeIngredients.map { ingredient ->
+        ingredient?.let {
+            dishIngredient(
+                foodCategory = it.foodCategory,
+                foodId = it.foodId,
+                image = it.image,
+                text = it.text,
+                weight = it.weight
+            )
+        }
+    }
+}
+
+fun convertToDishSub(recipeSub: Sub?): dishSub? {
+    return recipeSub?.let {
+        dishSub(
+            label = it.label,
+            tag = it.tag,
+            schemaOrgTag = it.schemaOrgTag,
+            total = it.total,
+            hasRDI = it.hasRDI,
+            daily = it.daily,
+            unit = it.unit
         )
     }
 }
-fun convertToDishSub(recipeSub: Sub): dishSub {
-    return dishSub(
-        label = recipeSub.label,
-        tag = recipeSub.tag,
-        schemaOrgTag = recipeSub.schemaOrgTag,
-        total = recipeSub.total,
-        hasRDI = recipeSub.hasRDI,
-        daily = recipeSub.daily,
-        unit = recipeSub.unit
-    )
+
+fun convertToDishDigest(recipeDigest: Digest?): dishDigest? {
+    return recipeDigest?.let {
+        dishDigest(
+            label = it.label,
+            tag = it.tag,
+            schemaOrgTag = it.schemaOrgTag,
+            total = it.total,
+            hasRDI = it.hasRDI,
+            daily = it.daily,
+            unit = it.unit,
+            sub = it.sub?.map(::convertToDishSub) ?: emptyList()
+        )
+    }
 }
 
-fun convertToDishDigest(recipeDigest: Digest): dishDigest {
-    return dishDigest(
-        label = recipeDigest.label,
-        tag = recipeDigest.tag,
-        schemaOrgTag = recipeDigest.schemaOrgTag,
-        total = recipeDigest.total,
-        hasRDI = recipeDigest.hasRDI,
-        daily = recipeDigest.daily,
-        unit = recipeDigest.unit,
-        sub = recipeDigest.sub.map(::convertToDishSub)
-    )
-}
-fun convertToDishImage(url: String, width: Int, height: Int): dishImage {
+
+fun convertToDishImage(url: String?, width: Int?, height: Int?): dishImage? {
+    if (url == null || width == null || height == null) {
+        return null
+    }
     return dishImage(
         url = url,
         width = width,
@@ -160,12 +177,12 @@ fun convertToDishImage(url: String, width: Int, height: Int): dishImage {
     )
 }
 
-fun convertToDishImages(recipeImages: Images): Map<String, dishImage> {
+fun convertToDishImages(recipeImages: Images?): Map<String, dishImage?> {
     return mapOf(
-        "LARGE" to convertToDishImage(recipeImages.LARGE.url, recipeImages.LARGE.width, recipeImages.LARGE.height),
-        "REGULAR" to convertToDishImage(recipeImages.REGULAR.url, recipeImages.REGULAR.width, recipeImages.REGULAR.height),
-        "SMALL" to convertToDishImage(recipeImages.SMALL.url, recipeImages.SMALL.width, recipeImages.SMALL.height),
-        "THUMBNAIL" to convertToDishImage(recipeImages.THUMBNAIL.url, recipeImages.THUMBNAIL.width, recipeImages.THUMBNAIL.height)
+        "LARGE" to (recipeImages?.LARGE?.let { convertToDishImage(it.url, it.width, it.height) }),
+        "REGULAR" to (recipeImages?.REGULAR?.let { convertToDishImage(it.url, it.width, it.height) }),
+        "SMALL" to (recipeImages?.SMALL?.let { convertToDishImage(it.url, it.width, it.height) }),
+        "THUMBNAIL" to (recipeImages?.THUMBNAIL?.let { convertToDishImage(it.url, it.width, it.height) })
     )
 }
 

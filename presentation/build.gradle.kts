@@ -1,17 +1,11 @@
-import org.jetbrains.kotlin.konan.properties.Properties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-}
-val localProperties = Properties()
-val localPropertiesFile = rootProject.file("local.properties")
-if (localPropertiesFile.exists()) {
-    localProperties.load(localPropertiesFile.reader())
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
-val XKey: String? = localProperties.getProperty("X-RapidAPI-Key")
-val XHost: String? = localProperties.getProperty("X-RapidAPI-Host")
 android {
     namespace = "com.example.schmecken"
     compileSdk = 34
@@ -74,4 +68,11 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+}
+kapt{
+    correctErrorTypes = true
 }

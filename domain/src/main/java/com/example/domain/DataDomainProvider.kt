@@ -32,7 +32,7 @@ class DataDomainProvider(private val dishDao: DishDao, filtersDao: FiltersDao) {
             val basicInfo = dishDao.getBasicInfo(dish.id)
             val label = basicInfo.label
             val image = basicInfo.image
-            allLabelsAndImages.add(SimpleDish(label, image))
+            allLabelsAndImages.add(SimpleDish(image, label))
         }
         return allLabelsAndImages
     }

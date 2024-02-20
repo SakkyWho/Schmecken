@@ -10,16 +10,20 @@ class UrlBuilder(private val filtersDao: FiltersDao) {
 
     fun build(): String {
         val filllist = filtersDao.getAll()
-        return StringBuilder(baseUrl).apply {
-            filllist[0].q?.let { append("&q=$it") }
-            filllist[0].time?.let { append("&time=$it") }
-            filllist[0].cuisineType?.let { append("&cuisineType%5B0%5D=$it") }
-            filllist[0].mealType?.let { append("&mealType%5B0%5D=$it") }
-            filllist[0].calories?.let { append("&calories=$it") }
-            filllist[0].health?.let { append("&health%5B0%5D=$it") }
-            filllist[0].diet?.let { append("&diet%5B0%5D=$it") }
-            filllist[0].dishType?.let { append("&dishType%5B0%5D=$it") }
-        }.toString()
+        return if (filllist.isNotEmpty()) {
+            StringBuilder(baseUrl).apply {
+                filllist[0].q?.let { append("&q=$it") }
+                filllist[0].time?.let { append("&time=$it") }
+                filllist[0].cuisineType?.let { append("&cuisineType%5B0%5D=$it") }
+                filllist[0].mealType?.let { append("&mealType%5B0%5D=$it") }
+                filllist[0].calories?.let { append("&calories=$it") }
+                filllist[0].health?.let { append("&health%5B0%5D=$it") }
+                filllist[0].diet?.let { append("&diet%5B0%5D=$it") }
+                filllist[0].dishType?.let { append("&dishType%5B0%5D=$it") }
+            }.toString()
+        } else {
+            baseUrl
+        }
     }
 
     suspend fun getAllFilters(): List<Filters> {

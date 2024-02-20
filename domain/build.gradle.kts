@@ -1,6 +1,9 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -51,4 +54,12 @@ dependencies {
     androidTestImplementation(project(mapOf("path" to ":data")))
     implementation(project(":data"))
     implementation("com.google.code.gson:gson:2.9.0")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+}
+kapt{
+    correctErrorTypes = true
 }

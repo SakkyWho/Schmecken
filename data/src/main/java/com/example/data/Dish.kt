@@ -20,7 +20,7 @@ data class BasicInfo(
     @SerializedName("image")
     val image: String?,
     @SerializedName("images")
-    val images: Map<String,dishImage>?,
+    val images: Map<String,dishImage?>?,
     @SerializedName("dietLabels")
     val dietLabels: List<String>?,
     @SerializedName("healthlabels")
@@ -46,13 +46,13 @@ data class OtherInfo(
     @SerializedName("yield")
     val yield: Int?,
     @SerializedName("ingredientLines")
-    val ingredientLines: List<String>?,
+    val ingredientLines: List<String?>?,
     @SerializedName("ingredients")
-    val ingredients: List<dishIngredient>?,
+    val ingredients: List<dishIngredient?>?,
     @SerializedName("totalTime")
     val totalTime: Int?,
     @SerializedName("digest")
-    val digest: List<dishDigest>?,
+    val digest: List<dishDigest?>?,
     )
 
 data class dishSub(
@@ -74,15 +74,15 @@ data class dishDigest(
     val hasRDI: Boolean?,
     val daily: Double?,
     val unit: String?,
-    val sub: List<dishSub>?
+    val sub: List<dishSub?>?
 )
 
 data class dishIngredient(
-    val foodCategory: String,
-    val foodId: String,
-    val image: String,
-    val text: String,
-    val weight: Double
+    val foodCategory: String?,
+    val foodId: String?,
+    val image: String?,
+    val text: String?,
+    val weight: Double?
 )
 
 
@@ -98,9 +98,9 @@ data class Nutrition(
     @SerializedName("totalWeight")
     val totalWeight: Double?,
     @SerializedName("totalDaily")
-    val totalDaily: Map<String, Nutrient>,
+    val totalDaily: Map<String, Nutrient?>,
     @SerializedName("totalNutrients")
-    val nutrients: Map<String,Nutrient>,
+    val nutrients: Map<String,Nutrient?>,
 )
 
 data class Nutrient(
