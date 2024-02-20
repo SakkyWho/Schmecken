@@ -2,11 +2,11 @@ package com.example.data
 
 import android.content.Context
 import androidx.room.Room
-
+//TODO удалить наверное
 class DatabaseProvider private constructor(context: Context) {
     val database: AppDatabase = Room.databaseBuilder(
         context,
-        AppDatabase::class.java, "database"
+        AppDatabase::class.java, "dishes"
     ).build()
 
     companion object {

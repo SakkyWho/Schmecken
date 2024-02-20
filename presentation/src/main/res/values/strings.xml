@@ -6,4 +6,6 @@
     <string name="second_fragment">second fragment</string>
     <string name="third_fragment">third fragment</string>
     <string name="fourth_fragment">fourth fragment</string>
+    <string name="dishname">dishname</string>
+    <string name="image_of_the_dish">Image of the dish</string>
 </resources>

@@ -6,29 +6,38 @@ import androidx.room.Query
 
 @Dao
 interface DishDao {
-    @Query("SELECT * FROM dish")
+    @Query(value = "SELECT * FROM dishes")
     fun getAll(): List<Dish>
 
     @Insert
     fun insertAll(vararg dishes: Dish)
-
-   /* @Query("SELECT * FROM dish WHERE Uri IN (:tablename)")
-    fun loadAllByIds(userIds: IntArray): List<User>
-
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-            "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): User
-
     @Insert
-    fun insertAll(vararg users: User)
+    fun insertAllarr(dishes: List<Dish>)
 
-    @Delete
-    fun delete(user: User)@
+    @Query("SELECT basicinfo FROM dishes WHERE id = :dishId")
+    fun getBasicInfo(dishId: Int): BasicInfo
+    @Query("SELECT otherinfo FROM dishes WHERE id = :dishId")
+    fun getOtherInfo(dishId: Int): OtherInfo
+    @Query("SELECT nutrition FROM dishes WHERE id = :dishId")
+    fun getNutrition(dishId: Int): Nutrition
 
-    @Query(       очень хорошо выглядит
-    "SELECT * FROM user" +
-    "JOIN book ON user.id = book.user_id"
-)
-fun loadUserAndBookNames(): Map<User, List<Book>>
-*/
+    /* @Query("SELECT * FROM dish WHERE Uri IN (:tablename)")
+     fun loadAllByIds(userIds: IntArray): List<User>
+
+     @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
+             "last_name LIKE :last LIMIT 1")
+     fun findByName(first: String, last: String): User
+
+     @Insert
+     fun insertAll(vararg users: User)
+
+     @Delete
+     fun delete(user: User)@
+
+     @Query(       очень хорошо выглядит
+     "SELECT * FROM user" +
+     "JOIN book ON user.id = book.user_id"
+ )
+ fun loadUserAndBookNames(): Map<User, List<Book>>
+ */
 }

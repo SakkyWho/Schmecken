@@ -1,35 +1,111 @@
 package com.example.data
 
-import android.health.connect.datatypes.MealType
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(tableName = "dishes")
 data class Dish(
-    @PrimaryKey val id : Int,
-    @ColumnInfo(name = "Uri") val Uri: String?,
-    @ColumnInfo(name = "label") val label: String?,
-    @ColumnInfo(name = "image") val image: String?,
-    @ColumnInfo(name = "images") val images: Array<Array<String>>?,
-    @ColumnInfo(name = "source") val source: String?,
-    @ColumnInfo(name = "url") val url: String?,
-    @ColumnInfo(name = "shareas") val shareas: String?,
-    @ColumnInfo(name = "yield") val yield: Int?,
-    @ColumnInfo(name = "dietLabels") val dietLabels: Array<String>?,
-    @ColumnInfo(name = "healthLabels") val healthLabels: Array<String>?,
-    @ColumnInfo(name = "cautions") val cautions: Array<String>?,
-    @ColumnInfo(name = "ingredientLines") val ingredientLines: Array<String>?,
-    @ColumnInfo(name = "ingredients") val ingredients: Array<Array<String>>?,
-    @ColumnInfo(name = "calories") val calories: Double?,
-    @ColumnInfo(name = "totalWeight") val totalWeight: Double?,
-    @ColumnInfo(name = "totalTime") val totalTime: Int?,
-    @ColumnInfo(name = "cousinType") val cousinType: Array<String>?,
-    @ColumnInfo(name = "mealType") val mealType: Array<String>?,
-    @ColumnInfo(name = "dishType") val dishType: Array<String>?,
-    @ColumnInfo(name = "totalNutrients") val totalNutrients: Array<Array<Triple<String, Double, String>>>?,
-    @ColumnInfo(name = "totalDaily") val totalDaily: Array<Array<Triple<String, Double, String>>>?,
-    @ColumnInfo(name = "digest") val digest: Array<Array<String>>?,
-    @ColumnInfo(name = "_links ") val _links: Array<Array<String>>?
-    ) {
-}
+    @PrimaryKey(autoGenerate = true) val id : Int = 0,
+    @ColumnInfo(name = "basicinfo") val basicinfo :BasicInfo,
+    @ColumnInfo(name = "otherinfo") val otherinfo: OtherInfo,
+    @ColumnInfo(name = "nutrition") val nutrition: Nutrition
+    )
+data class BasicInfo(
+    @SerializedName("uri")
+    val uri: String?,
+    @SerializedName("label")
+    val label: String?,
+    @SerializedName("image")
+    val image: String?,
+    @SerializedName("images")
+    val images: Map<String,dishImage?>?,
+    @SerializedName("dietLabels")
+    val dietLabels: List<String>?,
+    @SerializedName("healthlabels")
+    val healthLabels: List<String>?,
+    @SerializedName("cautions")
+    val cautions: List<String>?,
+    @SerializedName("cuisineType")
+    val cuisinType: List<String>?,
+    @SerializedName("totalTime")
+    val totalTime: Int?,
+    @SerializedName("mealType")
+    val mealType: List<String>?,
+    @SerializedName("dishType")
+    val dishType: List<String>?,
+)
+data class OtherInfo(
+    @SerializedName("source")
+    val source: String?,
+    @SerializedName("url")
+    val url: String?,
+    @SerializedName("shareAs")
+    val shareas: String?,
+    @SerializedName("yield")
+    val yield: Int?,
+    @SerializedName("ingredientLines")
+    val ingredientLines: List<String?>?,
+    @SerializedName("ingredients")
+    val ingredients: List<dishIngredient?>?,
+    @SerializedName("totalTime")
+    val totalTime: Int?,
+    @SerializedName("digest")
+    val digest: List<dishDigest?>?,
+    )
+
+data class dishSub(
+    val daily: Double?,
+    val hasRDI: Boolean?,
+    val label: String?,
+    val schemaOrgTag: String?,
+    val tag: String?,
+    val total: Double?,
+    val unit: String?
+)
+
+
+data class dishDigest(
+    val label : String?,
+    val tag: String?,
+    val schemaOrgTag: String?,
+    val total: Double?,
+    val hasRDI: Boolean?,
+    val daily: Double?,
+    val unit: String?,
+    val sub: List<dishSub?>?
+)
+
+data class dishIngredient(
+    val foodCategory: String?,
+    val foodId: String?,
+    val image: String?,
+    val text: String?,
+    val weight: Double?
+)
+
+
+data class dishImage(
+    val url: String,
+    val width: Int,
+    val height: Int
+)
+
+data class Nutrition(
+    @SerializedName("calories")
+    val calories: Double?,
+    @SerializedName("totalWeight")
+    val totalWeight: Double?,
+    @SerializedName("totalDaily")
+    val totalDaily: Map<String, Nutrient?>,
+    @SerializedName("totalNutrients")
+    val nutrients: Map<String,Nutrient?>,
+)
+
+data class Nutrient(
+    val name: String,
+    val quantity: Double,
+    val unit: String
+)
+
