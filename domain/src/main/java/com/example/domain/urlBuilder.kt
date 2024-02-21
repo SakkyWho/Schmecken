@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class UrlBuilder(private val filtersDao: FiltersDao) {
-    private val baseUrl = "https://edamam-recipe-search.p.rapidapi.com/api/recipes/v2?type=public&co2EmissionsClass=A%2B&beta=true&random=true"
+    private val baseUrl = "/api/recipes/v2?type=public&co2EmissionsClass=A%2B&beta=true&random=true"
 
     fun build(): String {
         val filllist = filtersDao.getAll()
