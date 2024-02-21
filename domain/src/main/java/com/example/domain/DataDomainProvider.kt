@@ -3,13 +3,13 @@ package com.example.domain
 import com.example.data.ApiResponse
 import com.example.data.DishDao
 import com.example.data.Recipe
-import com.example.data.filters.FiltersDao
+import com.example.data.filters.Filters
 import com.example.data.recipeToDish
 import com.google.gson.Gson
 
-class DataDomainProvider(private val dishDao: DishDao, filtersDao: FiltersDao) {
+class DataDomainProvider(private val dishDao: DishDao) {
 
-    private val rqmaker = Requestmaker(filtersDao)
+    private val rqmaker = Requestmaker()
 
     private suspend fun getResipesData(): List<Recipe> {
         val jsonString = rqmaker.getJson()
