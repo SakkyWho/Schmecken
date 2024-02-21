@@ -2,7 +2,6 @@ package com.example.domain
 
 import android.util.Log
 import com.example.data.RecipeApi
-import com.example.data.filters.FiltersDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -10,8 +9,8 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 
-class Requestmaker(filtersDao: FiltersDao) {
-private val urlBuilder = UrlBuilder(filtersDao)
+class Requestmaker() {
+//private val urlBuilder = UrlBuilder(filters)
     internal suspend fun getJson(): String {
         try {
         return suspendCoroutine { continuation ->

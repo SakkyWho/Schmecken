@@ -3,12 +3,12 @@ package com.example.schmecken.presentation.viewmodel
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.example.data.AppDatabase
-import com.example.data.filters.Filtersdb
 import com.example.schmecken.R
 import com.example.schmecken.di.FragmentsPagerAdapter
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var tabLayout: TabLayout
