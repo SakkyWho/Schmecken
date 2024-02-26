@@ -15,10 +15,15 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 interface RecipeApiService {
-    @Headers("Accept-Language: en", "X-RapidAPI-Key: 96c1521583msh4af0535795a21b9p116135jsn1ac75cb7c088", "X-RapidAPI-Host: edamam-recipe-search.p.rapidapi.com")
-    @GET("api/recipes/v2?type=public&co2EmissionsClass=A%2B&field%5B0%5D=uri&beta=true&random=true&cuisineType%5B0%5D=American&imageSize%5B0%5D=LARGE&mealType%5B0%5D=Breakfast&health%5B0%5D=alcohol-cocktail&diet%5B0%5D=balanced&dishType%5B0%5D=Biscuits%20and%20cookies")
+    @Headers(
+        "Accept-Language: en",
+        "X-RapidAPI-Key: 96c1521583msh4af0535795a21b9p116135jsn1ac75cb7c088",
+        "X-RapidAPI-Host: edamam-recipe-search.p.rapidapi.com"
+    )
+    @GET("api/recipes/v2?type=public&co2EmissionsClass=A%2B&field%5B0%5D=uri&beta=true&random=true&imageSize%5B0%5D=LARGE")
     fun getJson(): Call<ResponseBody>
 }
+
 
 class RecipeApi {
     private val service: RecipeApiService
@@ -44,8 +49,8 @@ class RecipeApi {
                         continuation.resume(response.body()?.string() ?: "")
                         Log.d("MyTag", "Сообщение 2")
                     } else {
+                        Log.d("MyTag", "HTTP error code: ${response.code()}")
                         continuation.resume("help")
-                        Log.d("MyTag", "ошибка 2")
                     }
                 }
 
@@ -55,4 +60,5 @@ class RecipeApi {
             })
         }
     }
+
 }

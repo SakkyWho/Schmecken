@@ -17,9 +17,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class FirstFragment() : Fragment() {
-  @Inject
+    @Inject
     lateinit var dbs: DomainPresentationProvider
 
+    private lateinit var itemAdapter: ItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,16 +31,21 @@ class FirstFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        super.onViewCreated(view, savedInstanceState)
         val itemsList: RecyclerView = view.findViewById(R.id.recyclerview)
+
+        // Инициализируйте адаптер с пустым списком
+        itemAdapter = ItemAdapter(emptyList(), requireContext())
+        itemsList.layoutManager = LinearLayoutManager(requireContext())
+        itemsList.adapter = itemAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             val items = dbs.getPreviewList()
 
-            itemsList.layoutManager = LinearLayoutManager(requireContext())
-            itemsList.adapter = ItemAdapter(items, requireContext())
+            // Обновите адаптер с загруженными данными
+            itemAdapter.items = items
+            itemAdapter.notifyDataSetChanged()
         }
-
     }
 }
+
 

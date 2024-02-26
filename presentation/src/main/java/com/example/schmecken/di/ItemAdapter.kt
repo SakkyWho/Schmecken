@@ -11,7 +11,7 @@ import com.example.schmecken.R
 import com.squareup.picasso.Picasso
 import com.example.domain.SimpleDish
 
-class ItemAdapter(private val items: List<SimpleDish>, var context: Context) : RecyclerView.Adapter<ItemAdapter.myViewholder>(){
+class ItemAdapter(internal var items: List<SimpleDish>, var context: Context) : RecyclerView.Adapter<ItemAdapter.myViewholder>(){
     class myViewholder(view: View): RecyclerView.ViewHolder(view){
         val image: ImageView = view.findViewById(R.id.image)
         val title: TextView = view.findViewById(R.id.label)

@@ -27,7 +27,19 @@ object DatabaseModule {
     fun provideDishDao(database: AppDatabase): DishDao {
         return database.dishDao()
     }
-
+    @Provides
+    fun provideFilters(): Filters {
+        return Filters(
+            q = null,
+            time = null,
+            cuisineType = null,
+            mealType = null,
+            calories = null,
+            health = null,
+            diet = null,
+            dishType = null
+        )
+    }
 }
 
 class DomainPresentationProvider @Inject constructor(

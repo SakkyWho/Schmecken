@@ -1,5 +1,6 @@
 package com.example.domain
 
+import android.util.Log
 import com.example.data.ApiResponse
 import com.example.data.DishDao
 import com.example.data.Recipe
@@ -11,8 +12,10 @@ class DataDomainProvider(private val dishDao: DishDao) {
 
     private val rqmaker = Requestmaker()
 
+
+
     private suspend fun getResipesData(): List<Recipe> {
-        val jsonString = rqmaker.getJson()
+        val jsonString = rqmaker.makeJson()
         val gson = Gson()
         val apiResponse = gson.fromJson(jsonString, ApiResponse::class.java)
         return apiResponse.hits.map { it.recipe }

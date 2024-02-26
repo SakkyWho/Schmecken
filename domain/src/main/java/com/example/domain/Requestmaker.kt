@@ -10,8 +10,7 @@ import kotlin.coroutines.suspendCoroutine
 
 
 class Requestmaker() {
-//private val urlBuilder = UrlBuilder(filters)
-    internal suspend fun getJson(): String {
+    internal suspend fun makeJson(): String {
         try {
         return suspendCoroutine { continuation ->
             GlobalScope.launch(Dispatchers.Main) {

@@ -8,4 +8,5 @@
     <string name="fourth_fragment">fourth fragment</string>
     <string name="dishname">dishname</string>
     <string name="image_of_the_dish">Image of the dish</string>
+    <string name="dishes">Dishes</string>
 </resources>
