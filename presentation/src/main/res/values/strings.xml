@@ -9,4 +9,13 @@
     <string name="dishname">dishname</string>
     <string name="image_of_the_dish">Image of the dish</string>
     <string name="dishes">Dishes</string>
+    <string name="textmid">text in middle</string>
+    <string name="time">Time:</string>
+    <string name="cautions">Cautions:</string>
+    <string name="cuisine_type">Cuisine Type:</string>
+    <string name="diet_labels">Diet Labels:</string>
+    <string name="dish_type">Dish Type:</string>
+    <string name="health_labels">Health Labels:</string>
+    <string name="todo">TODO</string>
+    <string name="meal_type">Meal Type:</string>
 </resources>

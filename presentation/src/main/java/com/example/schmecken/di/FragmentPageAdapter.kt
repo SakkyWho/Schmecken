@@ -4,12 +4,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.example.schmecken.presentation.ui.FirstFragment
 import com.example.schmecken.presentation.ui.FourthFragment
 import com.example.schmecken.presentation.ui.SecondFragment
 import com.example.schmecken.presentation.ui.ThirdFragment
 
 class FragmentsPagerAdapter(
+    private val viewPager: ViewPager2,
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ): FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -27,4 +29,9 @@ class FragmentsPagerAdapter(
             else -> throw IllegalStateException("err")
         }
     }
+
+    fun switchToFragment(position: Int) {
+        viewPager.currentItem = position
+    }
 }
+
