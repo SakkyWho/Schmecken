@@ -55,6 +55,8 @@ dependencies {
     implementation(project(":data"))
     implementation("com.google.code.gson:gson:2.9.0")
 
+    implementation("com.squareup.picasso:picasso:2.71828")
+
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-compiler:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")

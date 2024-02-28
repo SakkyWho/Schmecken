@@ -1,19 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.FirstFragment">
+    tools:context=".presentation.ui.SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/second_fragment"
-        android:gravity="center"
-        android:textColor="@color/light_red"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        />
+        android:background="@color/seashell">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/todo"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1.5dp"
+                android:layout_marginBottom="2dp"/>
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/totaltimelabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/time"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/totaltime"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="18sp"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                tools:ignore="RtlHardcoded" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagecircle"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="25dp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/CircleImageView"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1.5dp"/>
+            <TextView
+                android:id="@+id/dietLabelsLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                android:text="@string/diet_labels"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded,TextSizeCheck" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dietLabels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/healthLabelsLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/health_labels"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                tools:ignore="RtlHardcoded" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/healthLabels"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/cautionsLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/cautions"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                tools:ignore="RtlHardcoded" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cautions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/cuisineTypeLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                android:text="@string/cuisine_type"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded,TextSizeCheck" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cuisineType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/mealTypeLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/meal_type"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                tools:ignore="RtlHardcoded" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mealType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/dishTypeLabel"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="@string/dish_type"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/comfortaa"
+                android:padding="8dp"
+                tools:ignore="RtlHardcoded" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dishType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
