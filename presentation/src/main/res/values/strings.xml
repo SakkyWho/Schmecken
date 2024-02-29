@@ -18,4 +18,5 @@
     <string name="health_labels">Health Labels:</string>
     <string name="todo">TODO</string>
     <string name="meal_type">Meal Type:</string>
+    <string name="ingredients_of">Ingredients of</string>
 </resources>

@@ -10,13 +10,19 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.SimpleDish
 import com.example.schmecken.R
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.lang.Math.min
 
-class ItemAdapter(internal var items: List<SimpleDish>, var context: Context, private val viewModel: SharedViewModel) : RecyclerView.Adapter<ItemAdapter.MyViewholder>() {
+class ItemAdapter(internal var items: MutableList<SimpleDish>, var context: Context, private val viewModel: SharedViewModel) : RecyclerView.Adapter<ItemAdapter.MyViewholder>() {
     private var onItemClickListener: ((SimpleDish) -> Unit)? = null
-
+    fun addItems(newItems: List<SimpleDish>) {
+        val startPosition = items.size
+        items.addAll(newItems)
+        notifyItemRangeInserted(startPosition, newItems.size)
+    }
     class MyViewholder(view: View): RecyclerView.ViewHolder(view){
         val image: ImageView = view.findViewById(R.id.image)
         val title: TextView = view.findViewById(R.id.label)
@@ -38,19 +44,35 @@ class ItemAdapter(internal var items: List<SimpleDish>, var context: Context, pr
         return items.count()
     }
 
+
     override fun onBindViewHolder(holder: MyViewholder, position: Int) {
         holder.title.text = items[position].name
 
-
-        holder.image.setImageResource(R.drawable.placeholder)
-
+        // Закомментированная часть кода, отвечающая за отрисовку изображения через Bitmap
+        /*
         viewModel.viewModelScope.launch(Dispatchers.IO) {
             val bitmap = viewModel.loadBitmap(items[position].id)
             withContext(Dispatchers.Main) {
-                holder.image.setImageBitmap(bitmap)
+                if (bitmap != null) {
+                    holder.image.setImageBitmap(bitmap)
+                } else {
+                    Picasso.get()
+                        .load(items[position].image)
+                        .placeholder(R.drawable.placeholder)
+                        .into(holder.image)
+                }
             }
         }
+        */
+
+        // Отрисовка изображения через Picasso
+        Picasso.get()
+            .load(items[position].image)
+            .placeholder(R.drawable.placeholder)
+            .into(holder.image)
     }
+
+
 
 
 

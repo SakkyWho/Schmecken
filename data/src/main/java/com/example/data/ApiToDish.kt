@@ -1,5 +1,7 @@
 package com.example.data
 
+import kotlin.math.roundToInt
+
 fun recipeToDish(recipe: Recipe): Dish {
     val basicInfo = BasicInfo(
         uri = recipe.uri,
@@ -19,7 +21,7 @@ fun recipeToDish(recipe: Recipe): Dish {
         source = recipe.source,
         url = recipe.url,
         shareas = recipe.shareAs,
-        yield = recipe.yield,
+        yield = recipe.yield.toDouble().roundToInt(),
         ingredientLines = recipe.ingredientLines,
         ingredients = convertToDishIngredients(recipe.ingredients),
         totalTime = recipe.totalTime,

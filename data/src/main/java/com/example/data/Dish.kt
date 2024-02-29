@@ -44,7 +44,7 @@ data class OtherInfo(
     @SerializedName("shareAs")
     val shareas: String?,
     @SerializedName("yield")
-    val yield: Int?,
+    val yield: Int,
     @SerializedName("ingredientLines")
     val ingredientLines: List<String?>?,
     @SerializedName("ingredients")

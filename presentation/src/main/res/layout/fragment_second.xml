@@ -8,8 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/seashell">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,9 +32,13 @@
                 android:textSize="25sp"
                 android:gravity="center"
                 android:padding="8dp"
-                android:textColor="@color/black"
+                android:textColor="@color/light_red"
                 android:fontFamily="@font/comfortaa"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="40dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="4"/>
 
             <TextView
                 android:id="@+id/totaltimelabel"

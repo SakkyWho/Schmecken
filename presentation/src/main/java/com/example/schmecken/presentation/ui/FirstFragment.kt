@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.DomainPresentationProvider
+import com.example.domain.SimpleDish
 import com.example.schmecken.R
 import com.example.schmecken.di.ItemAdapter
 import com.example.schmecken.di.SharedViewModel
@@ -26,6 +27,9 @@ class FirstFragment : Fragment() {
     @Inject lateinit var dbs: DomainPresentationProvider
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var itemAdapter: ItemAdapter
+    private var currentPage = 0
+    private val itemsPerPage = 15
+    private var isLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +42,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val itemsList: RecyclerView = view.findViewById(R.id.recyclerview)
 
-        itemAdapter = ItemAdapter(emptyList(), requireContext(), sharedViewModel)
+        itemAdapter = ItemAdapter(emptyList<SimpleDish>().toMutableList(), requireContext(), sharedViewModel)
         itemsList.layoutManager = LinearLayoutManager(requireContext())
         itemsList.adapter = itemAdapter
 
@@ -53,17 +57,35 @@ class FirstFragment : Fragment() {
             Toast.makeText(requireContext(), "Dish selected! :)", Toast.LENGTH_SHORT).show()
         }
 
+        itemsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val totalItemCount = layoutManager.itemCount
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                if (!isLoading && totalItemCount <= lastVisibleItem + itemsPerPage) {
+                    loadItems()
+                }
+            }
+        })
 
+        loadItems()
+    }
 
+    private fun loadItems() {
+        isLoading = true
         viewLifecycleOwner.lifecycleScope.launch {
-            val items = dbs.getPreviewList()
-            val bitmapDataList = withContext(Dispatchers.IO) { dbs.getbitmaplist() }
-            sharedViewModel.bitmapData.value = bitmapDataList
-            itemAdapter.items = items
+            val items = withContext(Dispatchers.IO) {
+                dbs.getPreviewList(currentPage * itemsPerPage, itemsPerPage)
+            }
+            itemAdapter.addItems(items)
             itemAdapter.notifyDataSetChanged()
+            currentPage++
+            isLoading = false
         }
     }
 }
+
 
 
 
