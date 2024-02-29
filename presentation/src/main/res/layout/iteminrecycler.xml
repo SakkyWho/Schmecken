@@ -26,6 +26,15 @@
             android:fontFamily="@font/comfortaa"
             android:text="@string/textmid"
             android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/textwight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_gravity="bottom"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/midnight_green" />
 
     </androidx.cardview.widget.CardView>
 

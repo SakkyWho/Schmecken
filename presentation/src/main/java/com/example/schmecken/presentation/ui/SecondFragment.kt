@@ -76,6 +76,7 @@ class SecondFragment : Fragment() {
             cuisineTypeRecyclerView?.let { setupRecyclerView(it, secondInfo.cuisinType) }
             mealTypeRecyclerView?.let { setupRecyclerView(it, secondInfo.mealType) }
             dishTypeRecyclerView?.let { setupRecyclerView(it, secondInfo.dishType) }
+
         }
     }
 

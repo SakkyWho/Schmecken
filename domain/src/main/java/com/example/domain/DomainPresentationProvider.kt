@@ -58,15 +58,18 @@ class DomainPresentationProvider @Inject constructor(
     private val bitDao: BitmapDao
 ) {
     private val DDprovider = DataDomainProvider(dishDao,bitDao)
-    suspend fun getPreviewList(): List<SimpleDish> = withContext(Dispatchers.IO) {
-        DDprovider.fetchData()
-        return@withContext DDprovider.ddpPriviewList()
+    suspend fun getPreviewList(start: Int, count: Int): List<SimpleDish> = withContext(Dispatchers.IO) {
+        val allDishes = dishDao.getAll()
+        if (allDishes.size <= start + count) {
+            DDprovider.fetchData()
+        }
+        return@withContext DDprovider.ddpPriviewList(start, count)
     }
+
     suspend fun ddpbasicallinfo(id: Int): secondinfo = withContext(Dispatchers.IO) {
         val basicInfo = dishDao.getBasicInfo(id)
         if (basicInfo != null) {
-            Log.d("SecondInfo", "Fetched info for item id $id: $basicInfo")
-            return@withContext secondinfo(
+            val secondInfo = secondinfo(
                 uri = basicInfo.uri ?: "",
                 label = basicInfo.label ?: "",
                 image = basicInfo.image ?: "",
@@ -79,18 +82,45 @@ class DomainPresentationProvider @Inject constructor(
                 mealType = basicInfo.mealType ?: emptyList(),
                 dishType = basicInfo.dishType ?: emptyList()
             )
+            return@withContext secondInfo
         } else {
-            Log.d("SecondInfo", "No info found for item id $id")
             return@withContext secondinfo("", "", "", emptyMap(), emptyList(), emptyList(), emptyList(), emptyList(), 0, emptyList(), emptyList())
         }
     }
-    suspend fun getbitmaplist(): List<bitmapdata>{
+
+    suspend fun getbitmaplist(start: Int, count: Int): List<bitmapdata>{
        return DDprovider.convertSimpleDishListToBitmapDataList(
-           DDprovider.ddpPriviewList(),
+           DDprovider.ddpPriviewList(start, count),
            DDprovider.convertToBitmapdataList(bitDao.getAll())
            )
     }
 
+    suspend fun getThirdInfo(id: Int): ThirdInfo = withContext(Dispatchers.IO) {
+        val otherInfo = dishDao.getOtherInfo(id)
+        if (otherInfo != null) {
+            val recycIngrList = otherInfo.ingredients?.map { dishIngredient ->
+                RecycIngr(
+                    imageUrl = dishIngredient?.image ?: "",
+                    label = dishIngredient?.text ?: "",
+                    weight = dishIngredient?.weight?.toString() ?: ""
+                )
+            } ?: emptyList()
+
+            val digIngrList = otherInfo.digest?.map { dishDigest ->
+                DigIngr(
+                    digest = dishDigest?.label ?: "",
+                    value = dishDigest?.total ?: 0.0
+                )
+            } ?: emptyList()
+
+            return@withContext ThirdInfo(
+                recycIngrList = recycIngrList,
+                digIngrList = digIngrList
+            )
+        } else {
+            return@withContext ThirdInfo(emptyList(), emptyList())
+        }
+    }
 
 }
 

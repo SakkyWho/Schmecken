@@ -15,3 +15,10 @@ data class secondinfo(
     val mealType: List<String>,
     val dishType: List<String>,
 )
+data class RecycIngr(val imageUrl: String, val label: String, val weight: String)
+data class DigIngr(val digest: String, val value: Double)
+
+data class ThirdInfo(
+    val recycIngrList: List<RecycIngr>,
+    val digIngrList: List<DigIngr>
+)

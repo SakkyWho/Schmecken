@@ -28,12 +28,13 @@ class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : B
 
     suspend fun fetchData() {
         val recipes = getResipesData()
+        Log.d("fetchData", "Recipes data: $recipes")
         val dishes = recipes.map(::recipeToDish)
         dishDao.insertAllarr(dishes)
     }
 
-    fun ddpPriviewList():List<SimpleDish>{
-        val allDishes = dishDao.getAll()
+    fun ddpPriviewList(start: Int, count: Int): List<SimpleDish> {
+        val allDishes = dishDao.getAll().subList(start, start + count)
         val allLabelsAndImages = mutableListOf<SimpleDish>()
 
         for (dish in allDishes) {
