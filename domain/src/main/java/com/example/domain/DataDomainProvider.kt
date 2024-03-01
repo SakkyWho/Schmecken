@@ -1,21 +1,15 @@
 package com.example.domain
 
-import android.graphics.Bitmap
 import android.util.Log
 import com.example.data.ApiResponse
 import com.example.data.BitmapDao
 import com.example.data.Bitmapdata
 import com.example.data.DishDao
 import com.example.data.Recipe
-import com.example.data.filters.Filters
 import com.example.data.recipeToDish
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.ByteArrayOutputStream
 
-class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : BitmapDao) {
+class DataDomainProvider(private val dishDao: DishDao, private val bitdao: BitmapDao) {
 
     private val rqmaker = Requestmaker()
 
@@ -46,42 +40,18 @@ class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : B
         }
         return allLabelsAndImages
     }
-    suspend fun saveBitmap(bitmapdata: Bitmapdata) {
-        BitmapDao.insert(bitmapdata)
-    }
-    suspend fun loadBitmapDataWithPicasso(id: Int, url: String): bitmapdata {
-        val bitmap = withContext(Dispatchers.IO) {
-            var bitmap: Bitmap? = null
-            try {
-                bitmap = Picasso.get().load(url).get()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            bitmap
-        }
 
-        val stream = ByteArrayOutputStream()
-        bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
-        val byteArray = stream.toByteArray()
-
-        return bitmapdata(id = id, imageBitmap = byteArray)
-    }
-    suspend fun convertSimpleDishListToBitmapDataList(simpleDishList: List<SimpleDish>, existingBitmapDataList: List<bitmapdata>): List<bitmapdata> {
-        val bitmapDataList = existingBitmapDataList.toMutableList()
-
-        for (simpleDish in simpleDishList) {
-            if (!bitmapDataList.any { it.id == simpleDish.id }) {
-                simpleDish.image?.let { url ->
-                    val bitmapData = loadBitmapDataWithPicasso(simpleDish.id, url)
-                    bitmapDataList.add(bitmapData)
-                }
-            }
-        }
-
-        return bitmapDataList
+    //bitmap block
+    fun saveBitmapDB(bitmapdata: bitmapdata) {
+        val convertedBitmapdata = Bitmapdata(
+            id = bitmapdata.id,
+            imageBitmap = bitmapdata.imageBitmap,
+            isLiked = bitmapdata.isLiked
+        )
+        bitdao.updateBitmap(convertedBitmapdata)
     }
 
-    fun convertToBitmapdataList(bitmapDataList: List<Bitmapdata>): List<bitmapdata> {
+    fun convertToBitmapDomeinList(bitmapDataList: List<Bitmapdata>): List<bitmapdata> {
         val bitmapdataList = mutableListOf<bitmapdata>()
 
         for (bitmapData in bitmapDataList) {

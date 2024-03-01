@@ -22,3 +22,18 @@ data class ThirdInfo(
     val recycIngrList: List<RecycIngr>,
     val digIngrList: List<DigIngr>
 )
+data class FourthInfo(
+    val Dishid : Int,
+    val imageUrl: String,
+    val label: String,
+    val calories: Double
+)
+fun convertToDomain(fourthInfoData: com.example.data.FourthInfo): com.example.domain.FourthInfo {
+    return com.example.domain.FourthInfo(
+        fourthInfoData.Dishid,
+        fourthInfoData.imageUrl,
+        fourthInfoData.label,
+        fourthInfoData.calories
+    )
+}
+

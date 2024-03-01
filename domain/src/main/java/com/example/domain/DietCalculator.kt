@@ -1,5 +1,6 @@
 package com.example.domain
 
+import androidx.lifecycle.LiveData
 import com.example.data.Dish
 
 class DietCalculator(
@@ -16,10 +17,39 @@ class DietCalculator(
         }
     }
 
-    fun recommendDiet(dishes: List<Dish>): List<Dish> {
+    fun recommendDiet(dishes: List<FourthInfo>): List<FourthInfo> {
         val bmr = calculateBMR()
-        // Сортировка блюд по калорийности, начиная с наименее калорийных
-        return dishes.sortedBy { it.nutrition?.calories ?: 0.0 }
-            .filter { it.nutrition?.calories ?: 0.0 <= bmr }
+        val eligibleDishes = dishes.filter { it.calories >= 10 }
+        var recommendedDishes = listOf<FourthInfo>()
+        var totalCalories = 0.0
+
+        while (recommendedDishes.size < 5) {
+            recommendedDishes = eligibleDishes.shuffled().take(5)
+            totalCalories = recommendedDishes.sumByDouble { it.calories }
+
+            if (totalCalories > bmr + 100 || totalCalories < bmr - 100) {
+                recommendedDishes = listOf()
+            } else {
+                val threeDishCombos = recommendedDishes.combinations(3)
+                for (combo in threeDishCombos) {
+                    val comboCalories = combo.sumByDouble { it.calories }
+                    if (comboCalories >= bmr - 100 && comboCalories <= bmr + 100) {
+                        return combo
+                    }
+                }
+            }
+        }
+
+        return recommendedDishes
     }
+
+}
+fun <T> List<T>.combinations(n: Int): List<List<T>> {
+    if (n == 0) return listOf(emptyList())
+    if (isEmpty()) return emptyList()
+    val element = first()
+    val rest = drop(1)
+    val withoutElement = rest.combinations(n)
+    val withElement = rest.combinations(n - 1).map { combination -> combination + element }
+    return withoutElement + withElement
 }

@@ -35,10 +35,7 @@
                 android:textColor="@color/light_red"
                 android:fontFamily="@font/comfortaa"
                 android:layout_marginBottom="40dp"
-                android:shadowColor="#000000"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="4"/>
+                />
 
             <TextView
                 android:id="@+id/totaltimelabel"
@@ -48,7 +45,6 @@
                 android:text="@string/time"
                 android:textStyle="bold"
                 android:textSize="18sp"
-                android:textColor="@color/black"
                 android:fontFamily="@font/comfortaa"
                 android:padding="8dp" />
 
@@ -69,8 +65,7 @@
                 android:layout_marginEnd="25dp"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/CircleImageView"
-                app:strokeColor="@color/black"
-                app:strokeWidth="1.5dp"/>
+                />
             <TextView
                 android:id="@+id/dietLabelsLabel"
                 android:layout_width="140dp"
@@ -79,7 +74,6 @@
                 android:fontFamily="@font/comfortaa"
                 android:padding="8dp"
                 android:text="@string/diet_labels"
-                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded,TextSizeCheck" />
@@ -97,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/health_labels"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:fontFamily="@font/comfortaa"
@@ -117,7 +110,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/cautions"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:fontFamily="@font/comfortaa"
@@ -139,7 +131,6 @@
                 android:fontFamily="@font/comfortaa"
                 android:padding="8dp"
                 android:text="@string/cuisine_type"
-                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded,TextSizeCheck" />
@@ -157,7 +148,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/meal_type"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:fontFamily="@font/comfortaa"
@@ -177,7 +167,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:text="@string/dish_type"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:fontFamily="@font/comfortaa"

@@ -6,6 +6,7 @@ import androidx.room.Room
 import com.example.data.AppBitBase
 import com.example.data.AppDatabase
 import com.example.data.BitmapDao
+import com.example.data.Bitmapdata
 import com.example.data.DishDao
 import com.example.data.filters.Filters
 import dagger.Module
@@ -17,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-//куда это вставить?
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
@@ -30,6 +30,7 @@ object DatabaseModule {
         return Room.databaseBuilder(context, AppBitBase::class.java, "bitmaps").build()
     }
 
+
     @Provides
     fun provideDishDao(database: AppDatabase): DishDao {
         return database.dishDao()
@@ -38,6 +39,7 @@ object DatabaseModule {
     fun provideBitDao(database: AppBitBase): BitmapDao {
         return database.bitmapDao()
     }
+
     @Provides
     fun provideFilters(): Filters {
         return Filters(
@@ -57,7 +59,7 @@ class DomainPresentationProvider @Inject constructor(
     private val dishDao: DishDao,
     private val bitDao: BitmapDao
 ) {
-    private val DDprovider = DataDomainProvider(dishDao,bitDao)
+    private val DDprovider = DataDomainProvider(dishDao, bitDao)
     suspend fun getPreviewList(start: Int, count: Int): List<SimpleDish> = withContext(Dispatchers.IO) {
         val allDishes = dishDao.getAll()
         if (allDishes.size <= start + count) {
@@ -87,13 +89,18 @@ class DomainPresentationProvider @Inject constructor(
             return@withContext secondinfo("", "", "", emptyMap(), emptyList(), emptyList(), emptyList(), emptyList(), 0, emptyList(), emptyList())
         }
     }
-
-    suspend fun getbitmaplist(start: Int, count: Int): List<bitmapdata>{
-       return DDprovider.convertSimpleDishListToBitmapDataList(
-           DDprovider.ddpPriviewList(start, count),
-           DDprovider.convertToBitmapdataList(bitDao.getAll())
-           )
+    suspend fun updateBitBase(bitmapDataList: List<bitmapdata>) {
+        for (bitmapdata in bitmapDataList) {
+            DDprovider.saveBitmapDB(bitmapdata)
+        }
     }
+
+    suspend fun getBitmapList(): List<bitmapdata> {
+        val bitmapDataList = bitDao.getAll()
+        return DDprovider.convertToBitmapDomeinList(bitmapDataList)
+    }
+
+
 
     suspend fun getThirdInfo(id: Int): ThirdInfo = withContext(Dispatchers.IO) {
         val otherInfo = dishDao.getOtherInfo(id)
@@ -121,6 +128,27 @@ class DomainPresentationProvider @Inject constructor(
             return@withContext ThirdInfo(emptyList(), emptyList())
         }
     }
+
+    suspend fun getdiet(age : Int, gendger: String, weight: Double, height: Double): List<FourthInfo> {
+        val dietclass = DietCalculator(age, gendger, weight, height)
+
+        val allDishes = dishDao.getAll()
+
+        val fourthInfoDataList = allDishes.map { dish ->
+            FourthInfo(
+                Dishid = dish.id,
+                imageUrl = dish.basicinfo.image ?: "",
+                label = dish.basicinfo.label ?: "",
+                calories = dish.nutrition.calories ?: 0.0
+            )
+        }
+
+        val result = dietclass.recommendDiet(fourthInfoDataList)
+
+        return result
+    }
+
+
 
 }
 

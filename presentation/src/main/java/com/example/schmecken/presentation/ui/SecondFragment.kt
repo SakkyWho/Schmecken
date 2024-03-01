@@ -68,6 +68,7 @@ class SecondFragment : Fragment() {
             val dishTypeRecyclerView = view?.findViewById<RecyclerView>(R.id.dishType)
 
             labelTextView?.text = secondInfo.label
+            sharedViewModel.selectedItemLabel.value = secondInfo.label
             totalTime?.text = secondInfo.totalTime.toString()
 
             dietLabelsRecyclerView?.let { setupRecyclerView(it, secondInfo.dietLabels) }

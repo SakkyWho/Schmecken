@@ -531,3 +531,9 @@ data class WATER(
     val quantity: Double,
     val unit: String
 )
+data class FourthInfo(
+    val Dishid : Int,
+    val imageUrl: String,
+    val label: String,
+    val calories: Double
+)

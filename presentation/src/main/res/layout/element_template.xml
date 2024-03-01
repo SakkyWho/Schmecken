@@ -33,4 +33,15 @@
         android:shadowRadius="4"
         android:clickable="false"
         />
+    <ImageButton
+        android:id="@+id/likedButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="end|top"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/truemball"
+
+    />
 </FrameLayout>
