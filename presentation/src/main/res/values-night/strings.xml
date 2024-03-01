@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ingredients_of">Ingredients of</string>
+    <string name="male">Male</string>
+    <string name="recomended_diet">Recomended diet</string>
 </resources>

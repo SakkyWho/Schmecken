@@ -1,5 +1,6 @@
 package com.example.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -20,6 +21,8 @@ interface DishDao {
     fun getOtherInfo(dishId: Int): OtherInfo
     @Query("SELECT nutrition FROM dishes WHERE id = :dishId")
     fun getNutrition(dishId: Int): Nutrition
+
+
 
     /* @Query("SELECT * FROM dish WHERE Uri IN (:tablename)")
      fun loadAllByIds(userIds: IntArray): List<User>

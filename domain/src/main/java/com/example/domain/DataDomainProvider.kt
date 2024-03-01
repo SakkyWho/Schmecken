@@ -3,8 +3,6 @@ package com.example.domain
 import android.graphics.Bitmap
 import android.util.Log
 import com.example.data.ApiResponse
-import com.example.data.BitmapDao
-import com.example.data.Bitmapdata
 import com.example.data.DishDao
 import com.example.data.Recipe
 import com.example.data.filters.Filters
@@ -15,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
-class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : BitmapDao) {
+class DataDomainProvider(private val dishDao: DishDao) {
 
     private val rqmaker = Requestmaker()
 
@@ -46,6 +44,7 @@ class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : B
         }
         return allLabelsAndImages
     }
+/*
     suspend fun saveBitmap(bitmapdata: Bitmapdata) {
         BitmapDao.insert(bitmapdata)
     }
@@ -92,6 +91,8 @@ class DataDomainProvider(private val dishDao: DishDao, private val BitmapDao : B
 
         return bitmapdataList
     }
+
+ */
 
 
 }

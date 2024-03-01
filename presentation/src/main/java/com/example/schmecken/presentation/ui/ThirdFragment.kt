@@ -47,6 +47,10 @@ class ThirdFragment : Fragment() {
             val thirdInfo = dbs.getThirdInfo(itemId)
 
             val textlabel = view?.findViewById<TextView>(R.id.textView4)
+            sharedViewModel.selectedItemLabel.observe(viewLifecycleOwner, Observer { label ->
+                textlabel?.text = label
+            })
+
             val recycIngrRecyclerView = view?.findViewById<RecyclerView>(R.id.recyclerViewIngr)
             val digIngrRecyclerView = view?.findViewById<RecyclerView>(R.id.digests)
 

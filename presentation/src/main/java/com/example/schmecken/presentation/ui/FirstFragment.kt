@@ -42,7 +42,9 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val itemsList: RecyclerView = view.findViewById(R.id.recyclerview)
 
-        itemAdapter = ItemAdapter(emptyList<SimpleDish>().toMutableList(), requireContext(), sharedViewModel)
+        val simpleDishList = emptyList<SimpleDish>().toMutableList()
+
+        itemAdapter = ItemAdapter(simpleDishList, requireContext(), sharedViewModel)
         itemsList.layoutManager = LinearLayoutManager(requireContext())
         itemsList.adapter = itemAdapter
 
@@ -85,6 +87,8 @@ class FirstFragment : Fragment() {
         }
     }
 }
+
+
 
 
 
