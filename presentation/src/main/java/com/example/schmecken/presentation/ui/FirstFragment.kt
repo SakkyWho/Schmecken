@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -30,6 +31,7 @@ class FirstFragment : Fragment() {
     private var currentPage = 0
     private val itemsPerPage = 15
     private var isLoading = false
+    private var isUpdating = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,15 +67,51 @@ class FirstFragment : Fragment() {
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val totalItemCount = layoutManager.itemCount
                 val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                if (!isLoading && totalItemCount <= lastVisibleItem + itemsPerPage) {
+                if (!isLoading && lastVisibleItem == totalItemCount - 1) {
                     loadItems()
                 }
             }
         })
+        sharedViewModel.bitmapDataList.observe(viewLifecycleOwner, Observer { bitmapDataList ->
+           updatebit()
+            //val likedIds = bitmapDataList.filter { it.isLiked }.map { it.id }
+            //val likedItems = items.filter { it.id in likedIds }
 
+            //itemAdapter.updateItems(likedItems)
+        })
         loadItems()
-    }
+        viewLifecycleOwner.lifecycleScope.launch {
+            val bitmapDataListFromDB = withContext(Dispatchers.IO) {
+                dbs.getBitmapList()
+            }
+            for (bitmapdata in bitmapDataListFromDB) {
+                sharedViewModel.addBitmapData(bitmapdata)
+            }
+        }
 
+
+       /* val switchFav: Switch = view.findViewById(R.id.switchfav)
+        switchFav.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // Если переключатель включен, показываем только избранные элементы
+                val likedItems = sharedViewModel.getBitmapDataList().value?.filter { it.isLiked } ?: emptyList()
+                itemAdapter.updateItems(likedItems)
+            } else {
+                // Если переключатель выключен, показываем все элементы
+                itemAdapter.updateItems(sharedViewModel.getBitmapDataList().value ?: emptyList())
+            }
+        }*/
+    }
+    private fun updatebit(){
+    if (!isUpdating) {
+        isUpdating = true
+        val bitmapDataList = sharedViewModel.getBitmapDataList().value ?: emptyList()
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            dbs.updateBitBase(bitmapDataList)
+            isUpdating = false
+        }
+    }
+    }
     private fun loadItems() {
         isLoading = true
         viewLifecycleOwner.lifecycleScope.launch {

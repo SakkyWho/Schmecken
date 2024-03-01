@@ -9,6 +9,7 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
+import androidx.room.Transaction
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 
@@ -37,6 +38,15 @@ interface BitmapDao {
 
     @Query("UPDATE bitmaps SET isLiked = :isLiked WHERE id = :id")
     fun updateIsLiked(id: Int, isLiked: Boolean)
+
+    @Query("UPDATE bitmaps SET imageBitmap = :imageBitmap WHERE id = :id")
+    fun updateImageBitmap(id: Int, imageBitmap: ByteArray?)
+
+    @Transaction
+    fun updateBitmap(bitmapdata: Bitmapdata) {
+        updateIsLiked(bitmapdata.id, bitmapdata.isLiked)
+        updateImageBitmap(bitmapdata.id, bitmapdata.imageBitmap)
+    }
 }
 
 @Database(entities = [Bitmapdata::class], version = 1)

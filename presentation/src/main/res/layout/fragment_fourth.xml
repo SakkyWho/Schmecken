@@ -73,6 +73,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="@color/green_sky"
+            android:textSize="24dp"
             android:text="@string/recomended_diet" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view4444"
