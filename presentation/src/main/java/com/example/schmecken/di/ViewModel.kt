@@ -1,17 +1,12 @@
 package com.example.schmecken.di
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.viewpager2.widget.ViewPager2
-import com.example.domain.bitmapdata
+import com.example.domain.domeindata
 
 import com.example.domain.secondinfo
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SharedViewModel @Inject constructor() : ViewModel() {
@@ -20,7 +15,7 @@ class SharedViewModel @Inject constructor() : ViewModel() {
     val selectedItemId: MutableLiveData<Int> = MutableLiveData()
     val selectedItemLabel: MutableLiveData<String> = MutableLiveData()
     val switchFragmentCommand: MutableLiveData<Int> = MutableLiveData()
-    val bitmapDataList: MutableLiveData<List<bitmapdata>> = MutableLiveData()
+    val bitmapDataList: MutableLiveData<List<domeindata>> = MutableLiveData()
     fun updateIsLiked(id: Int, isLiked: Boolean) {
         val list = bitmapDataList.value ?: emptyList()
         val updatedList = list.map { bitmapdata ->
@@ -32,10 +27,10 @@ class SharedViewModel @Inject constructor() : ViewModel() {
         }
         bitmapDataList.value = updatedList
     }
-    fun getBitmapDataList(): LiveData<List<bitmapdata>> {
+    fun getBitmapDataList(): LiveData<List<domeindata>> {
         return bitmapDataList
     }
-    fun addBitmapData(newBitmapData: bitmapdata) {
+    fun addBitmapData(newBitmapData: domeindata) {
         val list = bitmapDataList.value ?: emptyList()
         bitmapDataList.value = list + newBitmapData
     }

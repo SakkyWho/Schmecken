@@ -43,7 +43,7 @@ data class Recipe(
     val totalWeight: Double,
     val uri: String,
     val url: String,
-    val yield: Int
+    val yield: Double
 )
 
 data class Self(

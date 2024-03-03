@@ -5,28 +5,21 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.example.domain.DomainPresentationProvider
 import com.example.domain.SimpleDish
-import com.example.domain.bitmapdata
+import com.example.domain.domeindata
 import com.example.schmecken.R
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
-import java.lang.Math.min
 
 class ItemAdapter(
     internal var items: MutableList<SimpleDish>,
@@ -68,7 +61,7 @@ class ItemAdapter(
         holder.title.text = item.name
 
         val bitmapDataList = viewModel.getBitmapDataList().value ?: emptyList()
-
+Log.d("bitlist","${bitmapDataList}")
         val matchingBitmapData = bitmapDataList.find { it.id == item.id }
         if (matchingBitmapData != null) {
             if (matchingBitmapData.isLiked) {
@@ -100,7 +93,7 @@ class ItemAdapter(
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
                         val byteArray = stream.toByteArray()
 
-                        val newBitmapData = bitmapdata(id = item.id, imageBitmap = byteArray)
+                        val newBitmapData = domeindata(id = item.id, imageBitmap = byteArray)
                         viewModel.addBitmapData(newBitmapData)
                     }
 
@@ -131,14 +124,4 @@ class ItemAdapter(
     fun setOnItemClickListener(listener: (SimpleDish) -> Unit) {
         onItemClickListener = listener
     }
-}
-fun convertToSimpleDishList(bitmapdataList: List<bitmapdata>): List<SimpleDish> {
-    val simpleDishList = mutableListOf<SimpleDish>()
-
-    for (bitmapdata in bitmapdataList) {
-        // Здесь вы преобразуете каждый объект bitmapdata в объект SimpleDish
-        // и добавляете его в список simpleDishList
-    }
-
-    return simpleDishList
 }
