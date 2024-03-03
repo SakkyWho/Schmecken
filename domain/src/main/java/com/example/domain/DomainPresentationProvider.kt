@@ -6,7 +6,6 @@ import androidx.room.Room
 import com.example.data.AppBitBase
 import com.example.data.AppDatabase
 import com.example.data.BitmapDao
-import com.example.data.Bitmapdata
 import com.example.data.DishDao
 import com.example.data.filters.Filters
 import dagger.Module
@@ -89,14 +88,14 @@ class DomainPresentationProvider @Inject constructor(
             return@withContext secondinfo("", "", "", emptyMap(), emptyList(), emptyList(), emptyList(), emptyList(), 0, emptyList(), emptyList())
         }
     }
-    suspend fun updateBitBase(bitmapDataList: List<bitmapdata>) {
-        for (bitmapdata in bitmapDataList) {
-            DDprovider.saveBitmapDB(bitmapdata)
-        }
+    suspend fun upsertBitBase(domeindata: domeindata) {
+        val bitmapData = DDprovider.convertToBitmapData(domeindata)
+        bitDao.upsert(bitmapData)
     }
 
-    suspend fun getBitmapList(): List<bitmapdata> {
+    suspend fun getBitmapList(): List<domeindata> {
         val bitmapDataList = bitDao.getAll()
+        Log.d("???","${bitmapDataList}")
         return DDprovider.convertToBitmapDomeinList(bitmapDataList)
     }
 

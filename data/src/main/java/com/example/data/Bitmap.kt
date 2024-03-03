@@ -6,6 +6,7 @@ import androidx.room.Database
 import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
@@ -15,11 +16,11 @@ import androidx.room.TypeConverters
 
 @Entity(tableName = "bitmaps")
 data class Bitmapdata(
-    @PrimaryKey() val id : Int,
+    @PrimaryKey val id : Int,
     @ColumnInfo(name = "imageBitmap", typeAffinity = ColumnInfo.BLOB)
     val imageBitmap: ByteArray?,
     @ColumnInfo(name = "isLiked")
-    var isLiked: Boolean
+    var isLiked: Boolean = false
 )
 
 @Dao
@@ -32,6 +33,9 @@ interface BitmapDao {
 
     @Insert
     fun insert(bitmapdata: Bitmapdata)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(bitmapData: Bitmapdata)
 
     @Delete
     fun delete(bitmapdata: Bitmapdata)

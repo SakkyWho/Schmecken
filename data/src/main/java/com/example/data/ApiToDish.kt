@@ -21,7 +21,7 @@ fun recipeToDish(recipe: Recipe): Dish {
         source = recipe.source,
         url = recipe.url,
         shareas = recipe.shareAs,
-        yield = recipe.yield.toDouble().roundToInt(),
+        yield = recipe.yield.roundToInt(),
         ingredientLines = recipe.ingredientLines,
         ingredients = convertToDishIngredients(recipe.ingredients),
         totalTime = recipe.totalTime,

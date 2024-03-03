@@ -54,8 +54,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(project(mapOf("path" to ":domain")))
 
-    //временное
-    implementation(project(mapOf("path" to ":data")))
+    implementation("com.airbnb.android:lottie:6.3.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -42,25 +42,34 @@ class DataDomainProvider(private val dishDao: DishDao, private val bitdao: Bitma
     }
 
     //bitmap block
-    fun saveBitmapDB(bitmapdata: bitmapdata) {
+    fun saveBitmapDB(domeindata: domeindata) {
         val convertedBitmapdata = Bitmapdata(
-            id = bitmapdata.id,
-            imageBitmap = bitmapdata.imageBitmap,
-            isLiked = bitmapdata.isLiked
+            id = domeindata.id,
+            imageBitmap = domeindata.imageBitmap,
+            isLiked = domeindata.isLiked
         )
+        Log.d("toupdate3","${convertedBitmapdata}")
         bitdao.updateBitmap(convertedBitmapdata)
     }
+    fun convertToBitmapData(domeindata: domeindata): Bitmapdata {
+        return Bitmapdata(
+            id = domeindata.id,
+            imageBitmap = domeindata.imageBitmap,
+            isLiked = domeindata.isLiked
+        )
+    }
 
-    fun convertToBitmapDomeinList(bitmapDataList: List<Bitmapdata>): List<bitmapdata> {
-        val bitmapdataList = mutableListOf<bitmapdata>()
+    fun convertToBitmapDomeinList(bitmapDataList: List<Bitmapdata>): List<domeindata> {
+        Log.d("toupdate4","${bitmapDataList}")
+        val domeindataList = mutableListOf<domeindata>()
 
         for (bitmapData in bitmapDataList) {
             val imageBitmap = bitmapData.imageBitmap ?: ByteArray(0)
-            val bitmapdata = bitmapdata(id = bitmapData.id, imageBitmap = imageBitmap)
-            bitmapdataList.add(bitmapdata)
+            val domeindata = domeindata(id = bitmapData.id, imageBitmap = imageBitmap)
+            domeindataList.add(domeindata)
         }
 
-        return bitmapdataList
+        return domeindataList
     }
 
 
