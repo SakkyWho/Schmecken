@@ -1,0 +1,13 @@
+
+<resources>
+    <attr name="colorLight_red" format="color" />
+    <attr name="colorOnLight_red" format="color" />
+    <attr name="colorLight_redContainer" format="color" />
+    <attr name="colorOnLight_redContainer" format="color" />
+    <attr name="harmonizeLight_red" format="boolean" />
+    <attr name="colorSchool_bus_yellow" format="color" />
+    <attr name="colorOnSchool_bus_yellow" format="color" />
+    <attr name="colorSchool_bus_yellowContainer" format="color" />
+    <attr name="colorOnSchool_bus_yellowContainer" format="color" />
+    <attr name="harmonizeSchool_bus_yellow" format="boolean" />
+</resources>

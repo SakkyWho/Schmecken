@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="10dp"
-    android:background="@color/midnight_green"
     android:layout_marginBottom="20dp">
 
     <ImageView
@@ -25,8 +24,8 @@
         android:fontFamily="@font/comfortaa"
         android:gravity="center"
         android:text="@string/dishname"
+        android:textColor="@color/design_default_color_on_primary"
         android:textSize="24sp"
-        android:textColor="@color/white"
         android:shadowColor="#000000"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -35,8 +34,8 @@
         />
     <ImageButton
         android:id="@+id/likedButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_gravity="end|top"
         android:layout_margin="10dp"
         android:background="@android:color/transparent"
