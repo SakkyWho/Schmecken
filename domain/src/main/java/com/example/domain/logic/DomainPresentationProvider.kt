@@ -90,12 +90,13 @@ class DomainPresentationProvider @Inject constructor(
             }
         }
     }
-
+    suspend fun updateIsLikedInBitBase(domeindata: domeindata) {
+                bitDao.updateIsLiked(domeindata.id, domeindata.isLiked)
+    }
 
     suspend fun getBitmapList(): List<domeindata> {
         return try {
             val bitmapDataList = bitDao.getAll()
-            Log.d("its1234","${bitmapDataList}")
             DDprovider.convertToBitmapDomeinList(bitmapDataList)
         } catch (e: Exception) {
             emptyList()

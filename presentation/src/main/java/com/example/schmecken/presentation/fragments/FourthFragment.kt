@@ -82,10 +82,6 @@ class FourthFragment : Fragment() {
             }
         }
 
-
-
-
-        // Set up Spinners
         val radioGroupGender: RadioGroup = view.findViewById(R.id.radio_group_gender)
         val spinnerAge = view.findViewById<Spinner>(R.id.spinner_age)
         val spinnerWeight = view.findViewById<Spinner>(R.id.spinner_weight)
@@ -100,7 +96,6 @@ class FourthFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Handle when nothing is selected in Spinner
             }
         }
 
@@ -113,7 +108,6 @@ class FourthFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Handle when nothing is selected in Spinner
             }
         }
 
@@ -126,7 +120,6 @@ class FourthFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
-                // Handle when nothing is selected in Spinner
             }
         }
         radioGroupGender.setOnCheckedChangeListener { group, checkedId ->

@@ -36,6 +36,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="6dp"
         android:text="Favorites"
+        android:checked="true"
         android:fontFamily="@font/comfortaa"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent" />

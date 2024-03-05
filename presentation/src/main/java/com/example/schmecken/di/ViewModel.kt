@@ -1,9 +1,13 @@
 package com.example.schmecken.di
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
+
 import androidx.viewpager2.widget.ViewPager2
 import com.example.domain.logic.DomainPresentationProvider
 import com.example.domain.dataclasses.FourthInfo
@@ -25,7 +29,7 @@ class SharedViewModel @Inject constructor(private val dbs: DomainPresentationPro
     val selectedItemLabel: MutableLiveData<String> = MutableLiveData()
     val switchFragmentCommand: MutableLiveData<Int> = MutableLiveData()
     val isSwitchChecked = MutableLiveData<Boolean>()
-    private val bitmapDataList: MutableLiveData<List<domeindata>> = MutableLiveData()
+    val bitmapDataList: MutableLiveData<List<domeindata>> = MutableLiveData()
     val itemList: MutableLiveData<List<SimpleDish>> = MutableLiveData()
     private var currentPage = 0
     private val itemsPerPage = 15
@@ -37,7 +41,11 @@ class SharedViewModel @Inject constructor(private val dbs: DomainPresentationPro
         val updatedList = list.filter { it.isLiked }
         bitmapDataList.value = updatedList
     }
-
+    fun updateliked(domeindata: domeindata){
+        viewModelScope.launch {
+            dbs.updateIsLikedInBitBase(domeindata)
+        }
+    }
     fun getBitmapDataList(): LiveData<List<domeindata>> {
         return bitmapDataList
     }
@@ -105,6 +113,7 @@ class SharedViewModel @Inject constructor(private val dbs: DomainPresentationPro
                 }
                 bitmapDataList.value = bitmapDataListFromDB
             } catch (e: Exception) {
+                Log.d("невышло","неполучилось")
             }
         }
     }
@@ -117,6 +126,16 @@ class SharedViewModel @Inject constructor(private val dbs: DomainPresentationPro
     suspend fun getthirdinfo(id : Int) : ThirdInfo {
         return dbs.getThirdInfo(id)
     }
+
+    val filteredItems: LiveData<List<SimpleDish>> = isSwitchChecked.switchMap { isChecked ->
+        if (isChecked) {
+            itemList.map { it.filter { item -> item.isLiked } }
+        } else {
+            itemList
+        }
+    }
+
+
 
     private val _gender = MutableLiveData<String>()
     val gender: LiveData<String> get() = _gender

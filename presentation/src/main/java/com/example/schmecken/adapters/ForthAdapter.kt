@@ -19,7 +19,6 @@ class forthAdapter(
     private val viewModel: SharedViewModel
 ) : RecyclerView.Adapter<forthAdapter.ViewHolder>(), AdapterView.OnItemSelectedListener{
 
-    // Добавляем интерфейс для обработки нажатий
     interface OnItemClickListener {
         fun onItemClick(item: FourthInfo)
     }
@@ -42,7 +41,6 @@ class forthAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // Set up ImageView and TextViews
         val item = items[position]
         Picasso.get()
             .load(item.imageUrl)
@@ -51,7 +49,6 @@ class forthAdapter(
         holder.labelOfFirst.text = item.label
         holder.labelOfCalories.text = item.calories.toString()
 
-        // Set up click listener
         holder.itemView.setOnClickListener {
             listener?.onItemClick(item)
         }
@@ -61,10 +58,10 @@ class forthAdapter(
 
     override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val item = parent.getItemAtPosition(position)
-        // Handle Spinner item selection
+
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
-        // Handle when nothing is selected in Spinner
+
     }
 }

@@ -79,7 +79,6 @@ class ItemAdapter(
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
-            // По нажатию на предмет передать в selectedItemId Id
             holder.itemView.setOnClickListener {
                 viewModel.selectedItemId.value = item.id
             }
@@ -89,6 +88,7 @@ class ItemAdapter(
             if (item is domeindata) {
                 item.isLiked = !item.isLiked
                 updateStar(holder.starButton, item.isLiked)
+                viewModel.updateliked(item)
                 viewModel.removeUnlikedItems()
                 viewModel.loadtodb()
             } else if (item is SimpleDish) {

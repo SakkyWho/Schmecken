@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.dataclasses.domeindata
 import com.example.domain.logic.DomainPresentationProvider
 import com.example.schmecken.R
 import com.example.schmecken.adapters.ItemAdapter
@@ -38,6 +39,8 @@ class FirstFragment : Fragment() {
         val itemsList: RecyclerView = view.findViewById(R.id.recyclerview)
         itemsList.layoutManager = LinearLayoutManager(requireContext())
         sharedViewModel.loadBitmapDataListFromDB()
+        val bitmapDataList: List<domeindata>? = sharedViewModel.getBitmapDataList().value
+        sharedViewModel.bitmapDataList.value = bitmapDataList
         val switch: Switch = view.findViewById(R.id.switchfav)
         switch.setOnCheckedChangeListener { _, isChecked ->
                 sharedViewModel.isSwitchChecked.value = isChecked
@@ -55,6 +58,8 @@ class FirstFragment : Fragment() {
         itemsList.layoutManager = LinearLayoutManager(requireContext())
         itemsList.adapter = itemAdapter
 
+        sharedViewModel.loadItems()
+        itemAdapter.updateItems(sharedViewModel.itemList.value ?: emptyList())
         itemAdapter.setOnItemClickListener { item ->
             sharedViewModel.selectedItemId.value = item.id
             viewLifecycleOwner.lifecycleScope.launch {
@@ -85,9 +90,10 @@ class FirstFragment : Fragment() {
                 itemAdapter.updateItems(sharedViewModel.itemList.value ?: emptyList())
             }
         }
-        sharedViewModel.itemList.observe(viewLifecycleOwner, Observer { itemList ->
+        sharedViewModel.filteredItems.observe(viewLifecycleOwner, Observer { itemList ->
             itemAdapter.updateItems(itemList)
         })
+
     }
 }
 
