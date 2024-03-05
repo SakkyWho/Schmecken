@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.ThirdFragment">
+    tools:context=".presentation.fragments.ThirdFragment">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -21,7 +21,6 @@
         android:layout_gravity="center"
         android:fontFamily="@font/comfortaa"
         android:text="@string/ingredients_of"
-        android:textColor="@color/school_bus_yellow"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
